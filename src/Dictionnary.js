@@ -9,8 +9,12 @@ class Dictionnary extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       const cookies = new Cookies();
-    
-      this.state = {progress: cookies.get('progress')};
+      let progress_cookie= cookies.get('progress')
+      if(!progress_cookie){
+        progress_cookie = dic
+        cookies.set('progress', dic);
+      }
+      this.state = {progress: progress_cookie};
     }
   
     handleChange(event) {    this.setState({value: event.target.value});  }
